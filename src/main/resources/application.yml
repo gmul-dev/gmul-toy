@@ -1,0 +1,40 @@
+server.port: 9999
+server.use-forward-headers: true
+server.servlet.context-path: /toy
+
+server:
+  servlet:
+    session:
+      timeout: 86400
+  tomcat:
+    max-connections: 10000
+    max-threads: 200
+
+spring:
+  application:
+    name: gmul-toy
+  http:
+    log-request-details: false
+  thymeleaf:
+    cache: false
+  session:
+    store-type: REDIS
+  cache:
+    type: redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  jpa:
+    show-sql: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate.format_sql: true
+      hibernate.use_sql_comments: true
+      hibernate.generate_statistics: true
+  main:
+    allow-bean-definition-overriding: true
+  jackson:
+    mapper:
+      DEFAULT_VIEW_INCLUSION: true
