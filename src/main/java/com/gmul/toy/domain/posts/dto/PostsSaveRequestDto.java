@@ -1,7 +1,7 @@
 package com.gmul.toy.domain.posts.dto;
 
 
-import com.gmul.toy.domain.posts.Posts;
+import com.gmul.toy.domain.exampledb.Posts;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
