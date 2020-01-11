@@ -3,7 +3,6 @@ package com.gmul.toy.domain.exampledb;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -20,10 +19,10 @@ public class Member {
     private long memberNo;
 
     @Column(name = "member_id")
-    private String memberId;
+    private String username;
 
     @Column(name = "member_pwd")
-    private String memberPwd;
+    private String password;
 
     @Column(name = "member_nickname")
     private String memberNickname;
@@ -34,13 +33,13 @@ public class Member {
 
     @Column(name = "mod_date")
     @LastModifiedDate
-    private LocalDateTime modData;
+    private LocalDateTime modDate;
 
     @Builder
-    public Member(long memberNo, String memberId, String memberPwd, String memberNickname){
+    public Member(long memberNo, String username, String password, String memberNickname){
         this.memberNo = memberNo;
-        this.memberId = memberId;
-        this.memberPwd = memberPwd;
+        this.username = username;
+        this.password = password;
         this.memberNickname = memberNickname;
     }
 }
