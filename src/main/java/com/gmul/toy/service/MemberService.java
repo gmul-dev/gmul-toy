@@ -13,7 +13,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public Member getMember(String memberId){
-        return memberRepository.findByMemberId(memberId);
+    public Member getMember(String username){
+        return memberRepository.findByUsername(username);
     }
 }
