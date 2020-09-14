@@ -39,7 +39,6 @@ spring:
       jdbc-url: jdbc:mysql://localhost:3306/example_db?serverTimezone=UTC
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
-      password: goddns0313!
       maximum-pool-size: 3
   main:
     allow-bean-definition-overriding: true
