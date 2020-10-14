@@ -1,5 +1,5 @@
 package com.gmul.toy.example.type;
 
 public enum PasswordStrength {
-    STRONG
+    NORMAL, INVALID, WEAK, STRONG
 }
