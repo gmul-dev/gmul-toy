@@ -1,7 +1,4 @@
-package com.gmul.toy.example.domain;
-
-import com.gmul.toy.example.type.PasswordStrength;
-import org.springframework.security.core.parameters.P;
+package com.gmul.toy.example;
 
 public class PasswordStrengthMeter {
 
@@ -10,25 +7,6 @@ public class PasswordStrengthMeter {
         if(s == null || s.isEmpty()) return PasswordStrength.INVALID;
 
         int metCounts = getMetCriteriaCounts(s);
-//        if(s.length() >= 8) metCounts++;
-//        if(meetsContainingNumberCriteria(s)) metCounts++;
-//        if(meetsContainingUppercaseCriteria(s)) metCounts++;
-
-//        // 7
-//        if(lengthEnough && !containsNum && !containsUpp)
-//            return PasswordStrength.WEAK;
-//        // 8
-//        if(!lengthEnough && containsNum && !containsUpp)
-//            return PasswordStrength.WEAK;
-//        // 9
-//        if(!lengthEnough && !containsNum && containsUpp)
-//            return PasswordStrength.WEAK;
-
-//        if(!lengthEnough) return PasswordStrength.NORMAL;
-//        if(!containsNum) return PasswordStrength.NORMAL;
-//        if(!containsUpp) return PasswordStrength.NORMAL;
-
-        // 10
         if(metCounts <= 1) return PasswordStrength.WEAK;
         if(metCounts == 2) return PasswordStrength.NORMAL;
 
