@@ -1,51 +1,46 @@
 package com.gmul.toy.example.domain;
 
 import com.gmul.toy.example.type.PasswordStrength;
+import org.springframework.security.core.parameters.P;
 
 public class PasswordStrengthMeter {
 
     public PasswordStrength meter(String s) {
 
-        // 5
-        if(s == null) {
-            return PasswordStrength.INVALID;
-        }
+        if(s == null || s.isEmpty()) return PasswordStrength.INVALID;
 
-        // 1
-        // return null
+        int metCounts = getMetCriteriaCounts(s);
+//        if(s.length() >= 8) metCounts++;
+//        if(meetsContainingNumberCriteria(s)) metCounts++;
+//        if(meetsContainingUppercaseCriteria(s)) metCounts++;
 
-        // 3
-        if(s.length() < 8) {
-            return PasswordStrength.NORMAL;
-        }
+//        // 7
+//        if(lengthEnough && !containsNum && !containsUpp)
+//            return PasswordStrength.WEAK;
+//        // 8
+//        if(!lengthEnough && containsNum && !containsUpp)
+//            return PasswordStrength.WEAK;
+//        // 9
+//        if(!lengthEnough && !containsNum && containsUpp)
+//            return PasswordStrength.WEAK;
 
-        // 4 => method 구성
-//        boolean containsNum = false;
-//        for(char ch : s.toCharArray()) {
-//            if(ch >= '0' && ch <= '9') {
-//                containsNum = true;
-//                break;
-//            }
-//        }
-        boolean containsNum = meetsContainingNumberCriteria(s);
-        if(!containsNum) {
-            return PasswordStrength.NORMAL;
-        }
+//        if(!lengthEnough) return PasswordStrength.NORMAL;
+//        if(!containsNum) return PasswordStrength.NORMAL;
+//        if(!containsUpp) return PasswordStrength.NORMAL;
 
-        // 6
-//        boolean containsUpp = false;
-//        for(char ch : s.toCharArray()) {
-//            if(Character.isUpperCase(ch)) {
-//                containsUpp = true;
-//                break;
-//            }
-//        }
-        boolean containsUpp = meetsContainingUppercaseCriteria(s);
-        if(!containsUpp) {
-            return PasswordStrength.NORMAL;
-        }
+        // 10
+        if(metCounts <= 1) return PasswordStrength.WEAK;
+        if(metCounts == 2) return PasswordStrength.NORMAL;
 
         return PasswordStrength.STRONG;
+    }
+
+    private int getMetCriteriaCounts(String s) {
+        int metCounts = 0;
+        if(s.length() >= 8) metCounts++;
+        if(meetsContainingNumberCriteria(s)) metCounts++;
+        if(meetsContainingUppercaseCriteria(s)) metCounts++;
+        return metCounts;
     }
 
     private boolean meetsContainingNumberCriteria(String s) {

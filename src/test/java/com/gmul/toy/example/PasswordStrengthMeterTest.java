@@ -69,4 +69,28 @@ public class PasswordStrengthMeterTest {
     public void 대문자_포함X_나머지충족() {
         assertStrength("ab12!@df", PasswordStrength.NORMAL);
     }
+
+    // 7 한가지만 충족
+    @Test
+    public void 길이가_8글자만_충족() {
+        assertStrength("aaadskjlf", PasswordStrength.WEAK);
+    }
+
+    // 8
+    @Test
+    public void 숫자포함만_충족() {
+        assertStrength("12345", PasswordStrength.WEAK);
+    }
+
+    // 9
+    @Test
+    public void 대문자포함만_충족() {
+        assertStrength("ABZEF", PasswordStrength.WEAK);
+    }
+
+    // 10
+    @Test
+    public void 아무_조건도_충족X() {
+        assertStrength("abc", PasswordStrength.WEAK);
+    }
 }
