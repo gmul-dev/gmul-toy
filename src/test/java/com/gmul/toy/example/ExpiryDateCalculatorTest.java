@@ -1,6 +1,6 @@
 package com.gmul.toy.example;
 
-import org.apache.tomcat.jni.Local;
+import com.gmul.toy.example.domain.PayData;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

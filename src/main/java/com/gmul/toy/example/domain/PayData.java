@@ -1,6 +1,4 @@
-package com.gmul.toy.example;
-
-import org.springframework.security.core.parameters.P;
+package com.gmul.toy.example.domain;
 
 import java.time.LocalDate;
 

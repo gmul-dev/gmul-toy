@@ -1,5 +1,7 @@
 package com.gmul.toy.example;
 
+import com.gmul.toy.example.domain.PayData;
+
 import java.time.LocalDate;
 import java.time.YearMonth;
 
