@@ -1,5 +1,7 @@
 package com.gmul.toy.example;
 
+import com.gmul.toy.example.domain.PasswordStrengthMeter;
+import com.gmul.toy.example.type.PasswordStrength;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

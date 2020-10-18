@@ -1,4 +1,4 @@
-package com.gmul.toy.example;
+package com.gmul.toy.example.domain;
 
 import com.gmul.toy.example.domain.PayData;
 

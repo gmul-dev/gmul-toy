@@ -1,5 +1,6 @@
 package com.gmul.toy.example;
 
+import com.gmul.toy.example.domain.ExpiryDateCalculator;
 import com.gmul.toy.example.domain.PayData;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;

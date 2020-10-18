@@ -1,4 +1,6 @@
-package com.gmul.toy.example;
+package com.gmul.toy.example.domain;
+
+import com.gmul.toy.example.type.PasswordStrength;
 
 public class PasswordStrengthMeter {
 
