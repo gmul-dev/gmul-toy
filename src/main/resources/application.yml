@@ -29,6 +29,7 @@ spring:
     generate-ddl: false
     hibernate:
       dialect: org.hibernate.dialect.MySQLDialect
+      hbm2ddl.auto: create
     properties:
       hibernate.format_sql: true
       hibernate.use_sql_comments: true

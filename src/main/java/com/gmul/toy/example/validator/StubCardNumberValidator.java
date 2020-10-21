@@ -3,9 +3,17 @@ package com.gmul.toy.example.validator;
 import com.gmul.toy.example.type.CardValidity;
 
 // CardNumberValidator's Stub
-public class StubCardNumberValidator extends CardNumberValidator{
+public class StubCardNumberValidator extends CardNumberValidator {
     private String invalidNo;
     private String theftNo;
+
+    public StubCardNumberValidator() {
+        super(null);
+    }
+
+    public StubCardNumberValidator(String server) {
+        super(server);
+    }
 
     public void setInvalidNo(String invalidNo) {
         this.invalidNo = invalidNo;
