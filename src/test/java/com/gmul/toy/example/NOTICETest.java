@@ -16,6 +16,8 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.format.datetime.DateFormatter;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -40,6 +42,9 @@ public class NOTICETest {
 
     @Test
     public void 변수나_필드사용해서_기댓값표현_X () {
+        /**
+         *
+
         LocalDate date = LocalDate.of(1945,8,15);
         String dateStr = date.format(DateTimeFormatter.ofPattern("yyyy년 M월 d일"));
         //assertEquals((date.getYear() + "년 " + date.getMonthValue() + "월 " + date.getDayOfMonth() + "일"), dateStr);
@@ -47,6 +52,7 @@ public class NOTICETest {
         // 논리적으로는 맞지만 가독성이 떨어진다
 
         assertEquals("1945년 8월 15일", dateStr);
+         */
     }
 
     @Test
@@ -235,7 +241,7 @@ public class NOTICETest {
 
         // 랜덤 값 생성을 별도 타입으로 분리하고
         // 이를 대역으로 대체해서 사용
-        GameNumGen gen = mock(GameNumGen.clas);
+        GameNumGen gen = mock(GameNumGen.class);
         given(gen.generate()).willReturn(new int[] {1, 2, 3});
 
         Game g = new Game(gen);
@@ -243,5 +249,112 @@ public class NOTICETest {
         assertEquals(0, s.strikes());
         assertEquals(0, s.balls());
          */
+    }
+
+    @Test
+    public void 필요하지_않은_값은_설정_X () {
+
+        /**
+         *
+         * 동일 아이디가 존재하는 상황을 만들때
+         * 굳이 이름, 이메일 값을 필요하지 않다
+         *
+         // 동일 아이디가 존재하는 상황
+//        memoryRepository.save(
+//          User.builder()
+//                  .id("dupid")
+//                  .name("name")
+//                  .email("abd@abc.com")
+//                  .build()
+//        );
+//
+//        RegisterReq req = RegisterReq.builder()
+//                .id("dupid")
+//                .name("aaa")
+//                .email("abc@abc.com")
+//                .build();
+//
+//        assertThrows(DupIdException.class, () -> {
+//            userRegisterSvc.register(req)
+//        });
+
+         memoryRepository.save(
+         User.builder().id("dupid").build()
+         );
+
+         RegisterReq req = RegisterReq.builder()
+         .id("dupid")
+         .build();
+
+         assertThrows(DupIdException.class, () -> {
+            userRegisterSvc.register(req)
+         });
+
+         */
+    }
+
+    @Test
+    public void 조건부로_검증_X () {
+        /**
+         * 테스트는 성공하거나 실패해야한다.
+         * 조건에 따라 단언하지 않으면 그 테스트는 성공하지도 실패하지도 않게 된다.
+
+
+//        Translator tr = new Translator();
+//        // cat == true 가 아니면 단언하지 않는다
+//        if(tr.contains("cat")) {
+//            assertEquals("고양이", tr.translate("cat"));
+//        }
+
+        // 조건도 단언하도록 변경
+        Translator tr = new Translator();
+        assertTrue(tr.contains("cat"));
+        assertEquals("고양이", tr.translate("cat"));
+
+         */
+    }
+
+    @Test
+    public void 통합테스트는_필요하지않은_범위까지_연동_X () {
+        /**
+         * @SpringBootTest 를 사용하면 서비스, 컨트롤러등 모든 스프링 빈을 초기화한다.
+         * DB설정 외에 나머지 설정도 처리하므로 스프링을 초기화 하는 시간이 길어질 수 있다.
+         *
+         * @JdbcTest 를 사용하면 DB연동과 관련된 부분만 초기화 된다.
+         * 스프링 초기화가 빠지므로 테스트 시간이 짧아진다.
+
+
+        @SpringBootTest
+        public class MemberDaoIntTest {
+            private JdbcTemplate template;
+            ...
+        }
+
+        @JdbcTest
+        @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+        public class MemberDaoJdbcTest {
+
+            @Autowired
+            JdbcTemplate template;
+            ...
+        }
+         */
+    }
+
+    @Test
+    public void 더이상_쓸모없는_테스트코드는_삭제 () {
+        /**
+         * 간혹 테스트 커버리지를 높이기 위한 의미없는 테스트코드가 있는데
+         * 도움이 안되므로 삭제한다...
+         * 포맷팅 방법을 익히기 위한 테스트.. 익히고 나면 쓸모 없어지므로 삭제
+        LocalDateTime dt = LocalDateTime.of(2019, 8, 15, 12, 0, 0);
+        assertEquals("2019-08-15 12:00:00", dt.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+
+         */
+
+        // 테스트 커버리지
+//        테스트하는 동안 실행하는 코드가 얼마나 되는지 설명하기 위해 사용하는 지표
+//        예를 들어 메서드가 10줄인데 테스트하며 실행된 코드가 8줄 => 커버리지 80%
+//        if, 하위 타입, 반복문등이 있으므로 테스트 커버리지를 구하는 것은 복잡
     }
 }
